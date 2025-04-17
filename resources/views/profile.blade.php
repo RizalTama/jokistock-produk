@@ -188,14 +188,13 @@
                     </div>
                     <div class="flex-none w-auto max-w-full px-3 my-auto">
                         <div class="h-full">
-                            <h5 class="mb-1">Alec Thompson</h5>
-                            <p class="mb-0 font-semibold leading-normal text-sm">CEO / Co-Founder</p>
+                            <h5 class="mb-1">{{ $datakaryawan->nama }}</h5>
+                            <p class="mb-0 font-semibold leading-normal text-sm">Karyawan</p>
                         </div>
                     </div>
                     <div
                         class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
                         <div class="relative right-0">
-
                         </div>
                     </div>
                 </div>
@@ -224,6 +223,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="flex-auto p-4">
                         <p class="leading-normal text-sm">Hi, I’m Alec Thompson, Decisions: If you can’t decide, the
                             answer is no. If two equally difficult paths, choose the one more painful in the short term
@@ -233,19 +233,21 @@
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                             <li
                                 class="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit">
-                                <strong class="text-slate-700">Nama :</strong> &nbsp; Alec M. Thompson
+      
+                                <strong class="text-slate-700">Nama :</strong> &nbsp;  {{ $datakaryawan->nama }}
+
                             </li>
                             <li
                                 class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                <strong class="text-slate-700">No HP:</strong> &nbsp; (44) 123 1234 123
+                                <strong class="text-slate-700">No HP:</strong> &nbsp; {{ $datakaryawan->no_hp }}
                             </li>
                             <li
                                 class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                <strong class="text-slate-700">Email:</strong> &nbsp; alecthompson@mail.com
+                                <strong class="text-slate-700">Email:</strong> &nbsp; {{ $datakaryawan->email }}
                             </li>
                             <li
                                 class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                <strong class="text-slate-700">Alamat:</strong> &nbsp; USA
+                                <strong class="text-slate-700">Alamat:</strong> &nbsp; {{ $datakaryawan->alamat }}
                             </li>
                         </ul>
                     </div>

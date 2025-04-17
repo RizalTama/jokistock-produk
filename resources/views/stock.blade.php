@@ -65,12 +65,13 @@
                                             </th>
                                         </tr>
                                     </thead>
+                                    @foreach ($produk as $produk )
                                     <tbody>
                                         <tr>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <p class="flex px-2 py-1 ml-2 font-bold mb-0 text-xs leading-tight ">
-                                                    TEH-001</p>
+                                                    {{ $produk->kode_produk }}</p>
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -81,7 +82,7 @@
                                                             alt="user1" />
                                                     </div>
                                                     <div class="flex flex-col justify-center">
-                                                        <h6 class="mb-0 text-sm leading-normal">John Michael</h6>
+                                                        <h6 class="mb-0 text-sm leading-normal">{{ $produk->nama_produk }}</h6>
                                                         <p class="mb-0 text-xs leading-tight text-slate-400">
                                                             john@creative-tim.com</p>
                                                     </div>
@@ -90,34 +91,41 @@
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="text-xs font-semibold leading-tight text-slate-400">100</span>
+                                                    class="text-xs font-semibold leading-tight text-slate-400">{{ $produk->stok }}</span>
 
                                             </td>
                                             <td
                                                 class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <span class="text-xs font-semibold leading-tight text-slate-400">Rp.
-                                                    20.000</span>
+                                                    {{ number_format($produk->harga, 0, ',', '.') }}</span>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="text-xs font-semibold leading-tight text-slate-400">23/04/18</span>
+                                                    class="text-xs font-semibold leading-tight text-slate-400">{{ \Carbon\Carbon::parse($produk->created_at)->translatedFormat('d F Y, H:i') }}
+                                                </span>
                                             </td>
                                             <td class="p-2 align-middle border-b">
                                                 <div class="flex px-2 py-1 w-full gap-4">
                                                     <a href="#" class="text-xs font-semibold text-white px-4 py-1 rounded-xl mr-2" style="background-color: #3A416F">
                                                         Edit
                                                     </a>
-                                                    <a href="javascript:;"
-                                                        class="text-xs font-semibold leading-tight text-white px-2 py-1 rounded-xl"style="background-color: red">
-                                                        Hapus
-                                                    </a>
+                                                    <form action="{{ route('produk.destroy', $produk->produk_id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button
+                                                            type="submit"
+                                                            class="text-xs font-semibold leading-tight text-white px-2 py-1 rounded-xl"
+                                                            style="background-color: red">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+
                                                 </div>
                                             </td>
                                         </tr>
-
-
                                     </tbody>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>

@@ -14,7 +14,7 @@ class KaryawanSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Karyawan::create([
-            'uuid' => Str::uuid(),
+            'karyawan_id' => Str::uuid(),
             'nama' => 'Rizal',
             'email' => 'rizal@example.com',
             'password' => Hash::make('password'),
