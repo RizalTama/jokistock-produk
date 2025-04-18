@@ -134,7 +134,10 @@
                         </svg>
                         {{-- <x-gmdi-logout /> --}}
                     </div>
-                    <span href="{{ route('logout') }}"class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Logout</span>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <span href="{{ route('logout') }}"class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Logout</span>
+                    </form>
                 </a>
             </li>
 

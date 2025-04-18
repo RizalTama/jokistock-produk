@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\KelolakaryawanController;
+use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileKaryawanController;
 
 
@@ -12,8 +14,20 @@ Route::get('/profile', [ProfileKaryawanController::class, 'index'])->name('profi
 Route::delete('/produk/{produk_id}', [StockController::class, 'destroy'])->name('produk.destroy');
 Route::get('/logout', [AuthController::class, 'logoutKaryawan'])->name('logout');
 Route::post('/login', [AuthController::class, 'loginkaryawan'])->name('login');
+Route::post('/produk/store', [StockController::class, 'store'])->name('produk.store');
+Route::put('/produk/{produk_id}', [StockController::class, 'update'])->name('produk.update');
 
 
+// ======================================   ADMIN   ========================================
+Route::post('/admin/login', [AuthController::class, 'loginAdmin'])->name('login.admin');
+Route::get('/admin/stock', [StockController::class, 'indexAdmin'])->name('stock.admin'); 
+Route::post('/admin/produk/store', [StockController::class, 'storeProdukAdmin'])->name('produk.storeAdmin');
+Route::get('/admin/logout', [AuthController::class, 'logoutAdmin'])->name('logout.admin');
+Route::get('/admin/profile', [ProfileAdminController::class, 'index'])->name('profileAdmin'); 
+Route::get('/admin/kelola-karyawan', [KelolakaryawanController::class, 'index'])->name('kelolaKaryawan');
+Route::post('/admin/karyawan/store', [KelolakaryawanController::class, 'storeKaryawan'])->name('karyawan.store');
+Route::delete('/admin/karyawan/{karyawan_id}', [KelolakaryawanController::class, 'destroy'])->name('karyawan.destroy'); 
+Route::put('/admin/karyawan/{karyawan_id}', [KelolakaryawanController::class, 'updateKaryawan'])->name('karyawan.update');
 
 
 Route::get('/dashboard', function () {          
@@ -21,30 +35,22 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 
-// Route::get('/stock', function () {
-//     return view('stock');
-// })->name('stock');
 
-// Route::get('/profile', function () {
-//     return view('profile');
-// })->name('profile');
 
 Route::get('/admin/login', function () {
     return view('admin.login');
 })->name('admin.login');
+
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard.dashboard');
 })->name('admin.dashboard');
-Route::get('/admin/kelola-stock', function () {
-    return view('admin.kelola-stock.kelolaStock');
-})->name('admin.kelola-stock');
 
-Route::get('/admin/kelola-karyawan', function () {
-    return view('admin.kelola-karyawan.karyawan');
-})->name('admin.karyawan');
+// Route::get('/admin/kelola-stock', function () {
+//     return view('admin.kelola-stock.kelolaStock');
+// })->name('admin.kelola-stock');
 
-Route::get('/admin/profile', function () {
-    return view('admin.profile.profilAdmin');
-})->name('admin.profile');
+
+
+
 
 

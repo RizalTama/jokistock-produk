@@ -1,17 +1,3 @@
-<!--
-=========================================================
-* Soft UI Dashboard Tailwind - v1.0.5
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-tailwind
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,9 +38,12 @@
                 <div class="flex-none w-full max-w-full px-3">
                     <div
                         class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-                        <div
-                            class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                            <h6>List Karyawan</h6>
+                        <div class="flex justify-between items-center px-2">
+                            <div
+                                class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                                <h6>List Karyawan</h6>
+                            </div>
+                            <button class="text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" style="background-color: green;">+ Tambah Karyawan</button>
                         </div>
                         <div class="flex-auto px-0 pt-0 pb-2">
                             <div class="p-0 overflow-x-auto">
@@ -78,53 +67,61 @@
                                             </th>
                                         </tr>
                                     </thead>
+                                    @foreach ($karyawan as $karyawan )
                                     <tbody>
                                         <tr>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <div class="flex px-2 py-1">
                                                     <div>
-                                                        <img src="../assets/img/team-2.jpg"
+                                                        <img src="{{ asset('storage/' . $karyawan->foto) }}" alt="karyawan"
                                                             class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl"
                                                             alt="user1" />
                                                     </div>
                                                     <div class="flex flex-col justify-center">
-                                                        <h6 class="mb-0 text-sm leading-normal">John Michael</h6>
+                                                        <h6 class="mb-0 text-sm leading-normal">{{ $karyawan->nama }}</h6>
                                                         <p class="mb-0 text-xs leading-tight text-slate-400">
-                                                            john@creative-tim.com</p>
+                                                            {{ $karyawan->email }}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="text-xs font-semibold leading-tight text-slate-400">08123456789</span>
+                                                    class="text-xs font-semibold leading-tight text-slate-400">{{ $karyawan->no_hp }}</span>
 
                                             </td>
                                             <td
                                                 class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="text-xs font-semibold leading-tight text-slate-400">karyawan@gmail.com</span>
+                                                    class="text-xs font-semibold leading-tight text-slate-400">{{ $karyawan->email }}</span>
 
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="text-xs font-semibold leading-tight text-slate-400">Surakarta</span>
+                                                    class="text-xs font-semibold leading-tight text-slate-400">{{ $karyawan->alamat }}</span>
                                             </td>
                                             <td class="p-2 align-middle border-b">
                                                 <div class="flex px-2 py-1 w-full gap-4">
-                                                    <a href="#" class="text-xs font-semibold text-white px-4 py-1 rounded-xl mr-2" style="background-color: #3A416F">
+                                                    <button id="edit" class="editButton text-xs font-semibold text-white px-4 py-1 rounded-xl mr-2" style="background-color: #3A416F">
                                                         Edit
-                                                    </a>
-                                                    <a href="javascript:;"
-                                                        class="text-xs font-semibold leading-tight text-white px-2 py-1 rounded-xl"style="background-color: red">
-                                                        Hapus
-                                                    </a>
+                                                    </button>
+                                                    <form action="{{ route('karyawan.destroy', $karyawan->karyawan_id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data karyawan ini?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button
+                                                            type="submit"
+                                                            class="text-xs font-semibold text-white px-2 py-1 rounded-xl"
+                                                            style="background-color: red">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
                                     </tbody>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
@@ -132,7 +129,8 @@
                 </div>
             </div>
 
-            <!-- card 2 -->
+            <!-- Modal Tambah Karyawan -->
+
 
 
             <footer class="pt-4">
@@ -144,139 +142,145 @@
                                 <script>
                                     document.write(new Date().getFullYear() + ",");
                                 </script>
-                                made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.creative-tim.com" class="font-semibold text-slate-700"
-                                    target="_blank">Creative Tim</a>
-                                for a better web.
+                                Inventaris Saung Teh
                             </div>
                         </div>
-                        <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
-                            <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com"
-                                        class="block px-4 pt-0 pb-1 text-sm font-normal transition-colors ease-soft-in-out text-slate-500"
-                                        target="_blank">Creative Tim</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/presentation"
-                                        class="block px-4 pt-0 pb-1 text-sm font-normal transition-colors ease-soft-in-out text-slate-500"
-                                        target="_blank">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://creative-tim.com/blog"
-                                        class="block px-4 pt-0 pb-1 text-sm font-normal transition-colors ease-soft-in-out text-slate-500"
-                                        target="_blank">Blog</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/license"
-                                        class="block px-4 pt-0 pb-1 pr-0 text-sm font-normal transition-colors ease-soft-in-out text-slate-500"
-                                        target="_blank">License</a>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             </footer>
         </div>
     </main>
-    <div fixed-plugin>
-        <a fixed-plugin-button
-            class="bottom-7.5 right-7.5 text-xl z-990 shadow-soft-lg rounded-circle fixed cursor-pointer bg-white px-4 py-2 text-slate-700">
-            <i class="py-2 pointer-events-none fa fa-cog"> </i>
-        </a>
-        <!-- -right-90 in loc de 0-->
-        <div fixed-plugin-card
-            class="z-sticky shadow-soft-3xl w-90 ease-soft -right-90 fixed top-0 left-auto flex h-full min-w-0 flex-col break-words rounded-none border-0 bg-white bg-clip-border px-2.5 duration-200">
-            <div class="px-6 pt-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
-                <div class="float-left">
-                    <h5 class="mt-4 mb-0">Soft UI Configurator</h5>
-                    <p>See our dashboard options.</p>
+
+    <!-- modal tambah karyawan -->
+    <div id="modalTambahKaryawan" class="absolute z-50 hidden items-center justify-center p-4 top-0 left-0 w-1/2 translate-y-1/2 translate-x-1/2  ">
+        <div class="bg-white rounded-lg shadow-lg w-full p-6 relative border-black border-2 shadow-black">
+            <!-- Header Modal -->
+            <div class="flex justify-between items-center mb-4">
+                <h5 class="text-lg font-bold">Tambah Karyawan</h5>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold leading-none">&times;</button>
+            </div>
+
+            <!-- Form -->
+            <form action="{{ route('karyawan.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-4">
+                    <label for="nama_karyawan" class="block text-sm font-medium text-gray-700">Nama </label>
+                    <input type="text" id="nama_karyawan" name="nama" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
                 </div>
-                <div class="float-right mt-6">
-                    <button fixed-plugin-close-button
-                        class="inline-block p-0 mb-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer hover:scale-102 leading-pro ease-soft-in tracking-tight-soft bg-150 bg-x-25 active:opacity-85 text-slate-700">
-                        <i class="fa fa-close"></i>
+                <div class="mb-4">
+                    <label for="gambar_karyawan" class="block text-sm font-medium text-gray-700">Foto</label>
+                    <input type="file" id="gambar_karyawan" name="foto" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="nohp" class="block text-sm font-medium text-gray-700">No. HP</label>
+                    <input type="text" id="nohp" name="no_hp" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
+                    <input type="text" id="alamat" name="alamat" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+
+                <!-- Footer Modal -->
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" onclick="closeModal()" class="mr-2 text-sm px-4 py-2 text-white font-bold rounded-lg hover:bg-gray-400" style="background-color: red;">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2  text-white rounded-lg font-bold text-sm " style="background-color: green;">
+                        Simpan
                     </button>
                 </div>
-                <!-- End Toggle Button -->
-            </div>
-            <hr class="h-px mx-0 my-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
-            <div class="flex-auto p-6 pt-0 sm:pt-4">
-                <!-- Sidebar Backgrounds -->
-                <div>
-                    <h6 class="mb-0">Sidebar Colors</h6>
-                </div>
-                <a href="javascript:void(0)">
-                    <div class="my-2 text-left" sidenav-colors>
-                        <span
-                            class="text-xs rounded-circle h-5.75 mr-1.25 w-5.75 ease-soft-in-out bg-gradient-to-tl from-purple-700 to-pink-500 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-slate-700 text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                            active-color data-color-from="purple-700" data-color-to="pink-500"
-                            onclick="sidebarColor(this)"></span>
-                        <span
-                            class="text-xs rounded-circle h-5.75 mr-1.25 w-5.75 ease-soft-in-out bg-gradient-to-tl from-gray-900 to-slate-800 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                            data-color-from="gray-900" data-color-to="slate-800" onclick="sidebarColor(this)"></span>
-                        <span
-                            class="text-xs rounded-circle h-5.75 mr-1.25 w-5.75 ease-soft-in-out bg-gradient-to-tl from-blue-600 to-cyan-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                            data-color-from="blue-600" data-color-to="cyan-400" onclick="sidebarColor(this)"></span>
-                        <span
-                            class="text-xs rounded-circle h-5.75 mr-1.25 w-5.75 ease-soft-in-out bg-gradient-to-tl from-green-600 to-lime-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                            data-color-from="green-600" data-color-to="lime-400" onclick="sidebarColor(this)"></span>
-                        <span
-                            class="text-xs rounded-circle h-5.75 mr-1.25 w-5.75 ease-soft-in-out bg-gradient-to-tl from-red-500 to-yellow-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                            data-color-from="red-500" data-color-to="yellow-400" onclick="sidebarColor(this)"></span>
-                        <span
-                            class="text-xs rounded-circle h-5.75 mr-1.25 w-5.75 ease-soft-in-out bg-gradient-to-tl from-red-600 to-rose-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                            data-color-from="red-600" data-color-to="rose-400" onclick="sidebarColor(this)"></span>
-                    </div>
-                </a>
-                <!-- Sidenav Type -->
-                <div class="mt-4">
-                    <h6 class="mb-0">Sidenav Type</h6>
-                    <p class="text-sm leading-normal">Choose between 2 different sidenav types.</p>
-                </div>
-                <div class="flex">
-                    <button transparent-style-btn
-                        class="inline-block w-full px-4 py-3 mb-2 text-xs font-bold text-center text-white uppercase align-middle transition-all border border-transparent border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-purple-700 to-pink-500 bg-fuchsia-500 hover:border-fuchsia-500"
-                        data-class="bg-transparent" active-style>Transparent</button>
-                    <button white-style-btn
-                        class="inline-block w-full px-4 py-3 mb-2 ml-2 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 border-fuchsia-500 bg-none text-fuchsia-500 hover:border-fuchsia-500"
-                        data-class="bg-white">White</button>
-                </div>
-                <p class="block mt-2 text-sm leading-normal xl:hidden">You can change the sidenav type just on desktop
-                    view.</p>
-                <!-- Navbar Fixed -->
-                <div class="mt-4">
-                    <h6 class="mb-0">Navbar Fixed</h6>
-                </div>
-                <div class="min-h-6 mb-0.5 block pl-0">
-                    <input
-                        class="rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5 relative float-left mt-1 ml-auto w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-slate-800/95 checked:bg-none checked:bg-right"
-                        type="checkbox" navbarFixed />
-                </div>
-                <hr
-                    class="h-px bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent sm:my-6" />
-                <a class="inline-block w-full px-6 py-3 mb-4 text-xs font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs hover:scale-102 active:opacity-85 tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-gray-900 to-slate-800"
-                    href="https://www.creative-tim.com/product/soft-ui-dashboard-tailwind" target="_blank">Free
-                    Download</a>
-                <a class="inline-block w-full px-6 py-3 mb-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:shadow-soft-xs hover:scale-102 active:opacity-85 leading-pro ease-soft-in tracking-tight-soft bg-150 bg-x-25 border-slate-700 text-slate-700 hover:bg-transparent hover:text-slate-700 hover:shadow-none active:bg-slate-700 active:text-white active:hover:bg-transparent active:hover:text-slate-700 active:hover:shadow-none"
-                    href="https://www.creative-tim.com/learning-lab/tailwind/html/quick-start/soft-ui-dashboard/"
-                    target="_blank"">View documentation</a>
-                <div class="w-full text-center">
-                    <a class="github-button" href="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind"
-                        data-icon="octicon-star" data-size="large" data-show-count="true"
-                        aria-label="Star creativetimofficial/soft-ui-dashboard on GitHub">Star</a>
-                    <h6 class="mt-4">Thank you for sharing!</h6>
-                    <a href="https://twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20Tailwind%20made%20by%20%40CreativeTim&hashtags=webdesign,dashboard,tailwindcss&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard-tailwind"
-                        class="inline-block px-6 py-3 mb-0 mr-2 text-xs font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:shadow-soft-xs hover:scale-102 active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 me-2 border-slate-700 bg-slate-700"
-                        target="_blank"> <i class="mr-1 fab fa-twitter" aria-hidden="true"></i> Tweet </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-dashboard-tailwind"
-                        class="inline-block px-6 py-3 mb-0 mr-2 text-xs font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:shadow-soft-xs hover:scale-102 active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 me-2 border-slate-700 bg-slate-700"
-                        target="_blank"> <i class="mr-1 fab fa-facebook-square" aria-hidden="true"></i> Share </a>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+    <!-- modal edit karyawan -->
+    <div id="modalEditKaryawan" class="absolute z-50 hidden items-center justify-center p-4 top-0 left-0 w-1/2 translate-y-1/2 translate-x-1/2  ">
+        <div class="bg-white rounded-lg shadow-lg w-full p-6 relative border-black border-2 shadow-black">
+            <!-- Header Modal -->
+            <div class="flex justify-between items-center mb-4">
+                <h5 class="text-lg font-bold">Edit Karyawan</h5>
+                <button onclick="closeModalEdit()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold leading-none">&times;</button>
+            </div>
+
+            <!-- Form -->
+            <form action="{{ route('karyawan.update', $karyawan->karyawan_id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="mb-4">
+                    <label for="nama_karyawan" class="block text-sm font-medium text-gray-700">Nama </label>
+                    <input type="text" id="nama_karyawan" name="nama" value="{{ $karyawan->nama }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="gambar_karyawan" class="block text-sm font-medium text-gray-700">Foto</label>
+                    <input type="file" id="gambar_karyawan" name="foto" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="nohp" class="block text-sm font-medium text-gray-700">No. HP</label>
+                    <input type="text" id="nohp" name="no_hp" value="{{ $karyawan->no_hp }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
+                    <input type="text" id="alamat" value="{{ $karyawan->alamat }}" name="alamat" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" value="{{ $karyawan->email }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" value="" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+
+                <!-- Footer Modal -->
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" onclick="closeModalEdit()" class="mr-2 text-sm px-4 py-2 text-white font-bold rounded-lg hover:bg-gray-400" style="background-color: red;">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2  text-white rounded-lg font-bold text-sm " style="background-color: green;">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </body>
+
+<script>
+    // Menampilkan modal
+    function openModal() {
+        document.getElementById('modalTambahKaryawan').classList.remove('hidden');
+    }
+
+    // Menutup modal
+    function closeModal() {
+        document.getElementById('modalTambahKaryawan').classList.add('hidden');
+    }
+
+    // Event listener untuk tombol
+    document.querySelector('button[style="background-color: green;"]').addEventListener('click', openModal);
+
+    // Event listener untuk tombol editButton
+    document.querySelectorAll('.editButton').forEach(button => {
+        button.addEventListener('click', openModalEdit);
+    });
+
+    function openModalEdit() {
+        document.getElementById('modalEditKaryawan').classList.remove('hidden');
+    }
+
+    function closeModalEdit() {
+        document.getElementById('modalEditKaryawan').classList.add('hidden');
+    }
+</script>
 <!-- plugin for scrollbar  -->
 <script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
 <!-- github button -->

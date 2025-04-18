@@ -49,7 +49,7 @@
                 <nav>
                     <!-- breadcrumb -->
 
-                    <h6 class="mb-2 ml-2 font-bold text-white capitalize">Profile</h6>
+                    <h6 class="mb-2 ml-2 font-bold text-white capitalize">Profile Admin</h6>
                 </nav>
 
                 <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -188,8 +188,8 @@
                     </div>
                     <div class="flex-none w-auto max-w-full px-3 my-auto">
                         <div class="h-full">
-                            <h5 class="mb-1">Alec Thompson</h5>
-                            <p class="mb-0 font-semibold leading-normal text-sm">CEO / Co-Founder</p>
+                            <h5 class="mb-1">{{ $dataAdmin->nama }}</h5>
+                            <p class="mb-0 font-semibold leading-normal text-sm">CEO / Co-Founder | ADMIN</p>
                         </div>
                     </div>
                     <div
@@ -233,19 +233,19 @@
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                             <li
                                 class="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit">
-                                <strong class="text-slate-700">Nama :</strong> &nbsp; Alec M. Thompson
+                                <strong class="text-slate-700">Nama :</strong> &nbsp; {{ $dataAdmin->nama }}
                             </li>
                             <li
                                 class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                <strong class="text-slate-700">No HP:</strong> &nbsp; (44) 123 1234 123
+                                <strong class="text-slate-700">No HP:</strong> &nbsp; {{ $dataAdmin->no_hp }}
                             </li>
                             <li
                                 class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                <strong class="text-slate-700">Email:</strong> &nbsp; alecthompson@mail.com
+                                <strong class="text-slate-700">Email:</strong> &nbsp; {{ $dataAdmin->email }}
                             </li>
                             <li
                                 class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                <strong class="text-slate-700">Alamat:</strong> &nbsp; USA
+                                <strong class="text-slate-700">Alamat:</strong> &nbsp; {{ $dataAdmin->alamat }}
                             </li>
                         </ul>
                     </div>
