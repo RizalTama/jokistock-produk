@@ -45,8 +45,8 @@
               <div class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 lg:w-5/12 xl:w-4/12">
                 <div class="relative flex flex-col min-w-0 mt-32 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border">
                   <div class="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">
-                    <h3 class="relative z-10 font-bold text-transparent bg-gradient-to-tl from-green-600 to-lime-400 bg-clip-text">Welcome back</h3>
-                    <p class="mb-0">Enter your email and password to sign in</p>
+                    <h3 class="relative z-10 font-bold text-transparent bg-gradient-to-tl from-green-600 to-lime-400 bg-clip-text">Login Karyawan</h3>
+                    <p class="mb-0">Masukan email dan password anda</p>
                   </div>
                   <div class="flex-auto p-6">
                     
@@ -70,12 +70,6 @@
                     </form>
 
                   </div>
-                  <div class="p-6 px-1 pt-0 text-center bg-transparent border-t-0 border-t-solid rounded-b-2xl lg:px-2">
-                    <p class="mx-auto mb-6 leading-normal text-sm">
-                      Don't have an account?
-                      <a href="../pages/sign-up.html" class="relative z-10 font-semibold text-transparent bg-gradient-to-tl from-green-600 to-lime-400 bg-clip-text">Sign up</a>
-                    </p>
-                  </div>
                 </div>
               </div>
               <div class="w-full max-w-full px-3 lg:flex-0 shrink-0 md:w-6/12">
@@ -91,40 +85,13 @@
     <footer class="py-12">
       <div class="container">
         <div class="flex flex-wrap -mx-3">
-          <div class="flex-shrink-0 w-full max-w-full mx-auto mb-6 text-center lg:flex-0 lg:w-8/12">
-            <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Company </a>
-            <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> About Us </a>
-            <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Team </a>
-            <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Products </a>
-            <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Blog </a>
-            <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Pricing </a>
-          </div>
-          <div class="flex-shrink-0 w-full max-w-full mx-auto mt-2 mb-6 text-center lg:flex-0 lg:w-8/12">
-            <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
-              <span class="text-lg fab fa-dribbble"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
-              <span class="text-lg fab fa-twitter"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
-              <span class="text-lg fab fa-instagram"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
-              <span class="text-lg fab fa-pinterest"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
-              <span class="text-lg fab fa-github"></span>
-            </a>
-          </div>
-        </div>
-        <div class="flex flex-wrap -mx-3">
           <div class="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
             <p class="mb-0 text-slate-400">
               Copyright ©
               <script>
                 document.write(new Date().getFullYear());
               </script>
-              Soft by Creative Tim.
+              Inventaris Saung Teh
             </p>
           </div>
         </div>

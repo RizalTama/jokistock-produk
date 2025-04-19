@@ -23,4 +23,7 @@ class Admin extends Model
         'foto-sampul',
     ];
 
+
+    
 }
+

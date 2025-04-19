@@ -29,7 +29,7 @@ class AuthController extends Controller
             // Simpan ID karyawan di session
             session(['karyawan_id' => $karyawan->karyawan_id]);
 
-            return redirect()->route('stock')->with('success', 'Login berhasil!');
+            return redirect()->route('dashboard')->with('success', 'Login berhasil!');
         }
 
         return redirect()->back()->with('error', 'Email atau password salah.');
